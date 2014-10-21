@@ -1,5 +1,5 @@
 <?php
-namespace Scarbous\lauer_template\ViewHelpers\Math;
+namespace Scarbous\fcsc\ViewHelpers\Math;
 
 class ArraySumViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
     /**

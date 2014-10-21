@@ -1,40 +1,40 @@
 {namespace v=Tx_Vhs_ViewHelpers}
 {namespace fcsc=Scarbous\fcsc\ViewHelpers}
 
+
 <v:content.resources.fal uid="{data.uid}" as="images">
-	<f:if condition="{data.imagewidth}>0">
-		<f:then>
-			<v:var.set name="ImageMaxWidth" value="{data.imagewidth}" />
-		</f:then>
-		<f:else>
-			<f:if condition="{images -> f:count()}>1">
-				<f:then>
-					<v:condition.iterator.contains needle="{data.imageorient}" haystack="17,18,25,26">
-						<f:then>
-							<v:var.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth}-{data.imagecols}*{settings.images.padding})/{data.imagecols}')}" />
-						</f:then>
-						<f:else>
-							<v:var.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth}-{data.imagecols}*{settings.images.padding})')}" />
-						</f:else>
-					</v:condition.iterator.contains>
-				</f:then>
-				<f:else>
-					<v:var.set name="ImageMaxWidth" value="{settings.Images.MaxWidth}" />
-				</f:else>
-			</f:if>
-		</f:else>
-	</f:if>
+    <f:if condition="{data.imagewidth}>0">
+        <f:then>
+            <v:var.set name="ImageMaxWidth" value="{data.imagewidth}" />
+        </f:then>
+        <f:else>
+            <f:if condition="{images -> f:count()}>1">
+                <f:then>
+                    <v:condition.iterator.contains needle="{data.imageorient}" haystack="{0:17,1:18,2:25,3:26}">
+                        <f:then>
+                            <v:var.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth} / 2 - {data.imagecols} * {settings.images.padding} * 2 ) / {data.imagecols} ') -> v:math.floor()}" />
+                        </f:then>
+                        <f:else>
+                            <v:var.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth} - ( {data.imagecols} - 1 ) * {settings.images.padding} * 2 ) / {data.imagecols} ') -> v:math.floor()}" />
+                        </f:else>
+                    </v:condition.iterator.contains>
 
-
-	<f:if condition="{images -> f:count()} > 1">
-		<f:then>
-			<f:render section="Images" arguments="{_all}"/>
-		</f:then>
-		<f:else>
-			<v:var.set name="image" value="{images.0}" />
-			<f:render section="getImage" arguments="{_all}"/>
-		</f:else>
-	</f:if>
+                </f:then>
+                <f:else>
+                    <v:var.set name="ImageMaxWidth" value="{settings.Images.MaxWidth}" />
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+    <f:if condition="{images -> f:count()} > 1">
+        <f:then>
+            <f:render section="Images" arguments="{_all}"/>
+        </f:then>
+        <f:else>
+            <v:var.set name="image" value="{images.0}" />
+            <f:render section="getImage" arguments="{_all}"/>
+        </f:else>
+    </f:if>
 </v:content.resources.fal>
 
 
@@ -42,34 +42,34 @@
 
 
 <f:section name="Images">
-<f:for each="{images}" as="image" iteration="imageIterator">
-	<f:render section="getImage" arguments="{_all}"/>
-<f:comment><!--
+    <f:for each="{images}" as="image" iteration="imageIterator">
+        <f:render section="getImage" arguments="{_all}"/>
+        <f:comment><!--
     <figure style="display:inline-block;" >
     	<f:image src="{image.url}" id="I{image.uid}" title="{image.title}" alt="{image.alternative}" maxWidth="{ImageMaxWidth}" class="img-thumbnail"/>
     	<f:if condition="{image.description}"><figcaption>{image.description}</figcaption></f:if>
     </figure>
 --></f:comment>
 
-</f:for>
+    </f:for>
 
 </f:section>
 
 
 
 <f:section name="getImage">
-	<figure class="thumbnail rowCount-{fcsc:math.problem(a:'{imageIterator.index}%{data.imagecols}')}">
-		<f:if condition="{data.image_zoom}">
-			<a href="{v:uri.image(src: '{image.url}', width: '1140')}" class="fancybox" data-toggle="lightbox" data-target="#lightbox">
-		</f:if>
-		<f:image src="{image.url}" id="I{image.uid}" title="{image.title}" alt="{image.alternative}" maxWidth="{ImageMaxWidth}"/>
-		<f:if condition="{data.image_zoom}">
-			</a>
-		</f:if>
-		<f:if condition="{image.description}">
-			<figcaption class="caption">{image.description}</figcaption>
-		</f:if>
-	</figure>
+    <figure class="thumbnail rowCount-{fcsc:math.problem(a:'{imageIterator.index}%{data.imagecols}')}">
+        <f:if condition="{data.image_zoom}">
+            <a href="{v:uri.image(src: '{image.url}', width: '1140')}" class="fancybox" data-toggle="lightbox" data-target="#lightbox">
+        </f:if>
+        <f:image src="{image.url}" id="I{image.uid}" title="{image.title}" alt="{image.alternative}" maxWidth="{ImageMaxWidth}"/>
+        <f:if condition="{data.image_zoom}">
+            </a>
+        </f:if>
+        <f:if condition="{image.description}">
+            <figcaption class="caption">{image.description}</figcaption>
+        </f:if>
+    </figure>
 </f:section>
 
 

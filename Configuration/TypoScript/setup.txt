@@ -1,3 +1,5 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fcsc/Configuration/TypoScript/csc/setup.txt">
+
 page.includeCSS.fcsc = {$plugin.tx_fcsc.filepaths.StyleSheet}fcsc.css
 
 temp.fcsc.tt_content = FLUIDTEMPLATE
@@ -5,33 +7,53 @@ temp.fcsc.tt_content {
 	partialRootPath = {$plugin.tx_fcsc.filepaths.partialRootPath}
 	layoutRootPath = {$plugin.tx_fcsc.filepaths.layoutRootPath}
 	settings {
+		header {
+		    noHeaderTagCols = {$plugin.tx_fcsc.settings.header.noHeaderTagCols}
+		    noHeaderTagClass = {$plugin.tx_fcsc.settings.header.noHeaderTagClass}
+		}
 		images {
 			contentWidth = {$plugin.tx_fcsc.settings.images.contentWidth}
 			padding = {$plugin.tx_fcsc.settings.images.padding}
 		}
+		table {
+            defaultClass = {$plugin.tx_fcsc.settings.table.defaultClass}
+            layoutClass.1 =  {$plugin.tx_fcsc.settings.table.layoutClass.1}
+        }
+        uploads {
+
+        }
 	}
 }
 
 
 plugin.tx_fcsc._CSS_DEFAULT_STYLE (
+.media { margin: 0 -{$plugin.tx_fcsc.settings.images.padding}px;}
+
 .imageOrient-17 .imageContainer,
 .imageOrient-25 .imageContainer,
 .imageOrient-18 .imageContainer,
 .imageOrient-26 .imageContainer { max-width:50%; }
 
+.imageContainer { margin: -{$plugin.tx_fcsc.settings.images.padding}px 0; }
 
-.imageContainer { margin:-{$plugin.tx_fcsc.settings.images.padding}px; }
+.media.imageOrient-17 .content,
+.media.imageOrient-25 .content,
+.media.imageOrient-18 .content,
+.media.imageOrient-26 .content { padding: 0 {$plugin.tx_fcsc.settings.images.padding}px; }
 
 .imageContainer figure { padding:{$plugin.tx_fcsc.settings.images.padding}px; margin:0; }
 
+)
+/*
+
 .imageOrient-17 .imageContainer figure,
-.imageOrient-25 .imageContainer figure { margin:0; padding:0 0 {$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px; }
+.imageOrient-25 .imageContainer figure { margin:0; padding:{$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px; }
 
 
 .imageOrient-18 .imageContainer figure,
 .imageOrient-26 .imageContainer figure { margin:0; padding:0 {$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px 0; }
-)
 
+*/
 
 
 temp.lib.stdheader < lib.stdheader
@@ -64,8 +86,8 @@ tt_content {
 	image = COA
 	image {
 		10 < lib.stdheader
-#		20 < temp.fcsc.tt_content
-#		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Image.html
+		20 < temp.fcsc.tt_content
+		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Image.html
 	}
 
 	bullets = COA
@@ -96,6 +118,7 @@ tt_content {
 	html < temp.fcsc.tt_content
 	html.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Html.html
 }
+
 #tt_content.menu.20.10 < lib.stdheader
 #tt_content.menu.20 >
 #tt_content.menu.20 < temp.fcsc.tt_content

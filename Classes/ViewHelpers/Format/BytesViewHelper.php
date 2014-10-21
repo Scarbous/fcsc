@@ -1,5 +1,5 @@
 <?php
-namespace Scarbous\lauer_template\ViewHelpers\Format;
+namespace Scarbous\fcsc\ViewHelpers\Format;
 
 
 class BytesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {

@@ -1,3 +1,5 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fcsc/Configuration/TypoScript/csc/constants.txt">
+
 plugin.tx_fcsc {
 	filepaths {
 		StyleSheet = EXT:fcsc/Resources/Public/Stylesheet/
@@ -6,9 +8,17 @@ plugin.tx_fcsc {
 		layoutRootPath = EXT:fcsc/Resources/Private/Layouts/
 	}
 	settings {
+		header {
+		    noHeaderTagCols = 20, 21
+		    noHeaderTagClass = title
+		}
 		images {
 			contentWidth = 1000
-			padding = 20
+			padding = 10
+		}
+		table {
+		    defaultClass = table
+		    layoutClass.1 = Layout1
 		}
 	}
 }

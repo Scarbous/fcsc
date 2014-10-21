@@ -30,85 +30,46 @@
 </f:section>
 
 <f:section name="HeaderWrap">
-	<v:switch value="{data.colPos}">
-		<v:case case="2"/>
-		<v:case case="11"/>
-		<v:case case="21"/>
-		<v:case case="22"/>
-		<v:case case="23" break="TRUE">
-			<div class="title">
-				<f:render section="HeaderContent" arguments="{_all}" />
-			</div>
-		</v:case>
-		<v:case case="default" break="true">
+
+    <v:condition.iterator.contains needle="{data.colPos}" haystack="{settings.header.noHeaderTagCols -> v:iterator.explode()}">
+        <f:then>
+            <div class="{settings.header.noHeaderTagClass}"><f:render section="HeaderContent" arguments="{_all}" /></div>
+        </f:then>
+        <f:else>
+
 			<v:switch value="{data.header_layout}">
-				<v:case case="1" break="TRUE">
-					<h1{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h1>
-				</v:case>
 				<v:case case="2" break="TRUE">
-					<h2{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h2>
+					<h2{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h2>
 				</v:case>
 				<v:case case="3" break="TRUE">
-					<h3{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h3>
+					<h3{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h3>
 				</v:case>
 				<v:case case="4" break="TRUE">
-					<h4{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h4>
+					<h4{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h4>
 				</v:case>
 				<v:case case="5" break="TRUE">
-					<h5{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h5>
+					<h5{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h5>
 				</v:case>
 				<v:case case="6" break="TRUE">
-					<h6{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h6>
+					<h6{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h6>
 				</v:case>
-				<v:case case="default">
-					<h1{f:render(section:'headerClass' arguments:'{_all}')}>
-						<span class="title">
-							<f:render section="HeaderContent" arguments="{_all}" />
-						</span></h1>
+                <v:case case="1" />
+                <v:case case="default" break="TRUE">
+					<h1{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h1>
 				</v:case>
 			</v:switch>
-		</v:case>
-	</v:switch>
+        </f:else>
+    </v:condition.iterator.contains>
 </f:section>
 
 <f:section name="SubHeaderWrap">
 	<v:switch value="{data.header_layout}">
-		<v:case case="1" break="TRUE">
-			<h2>{data.subheader}</h2>
-		</v:case>
-		<v:case case="2" break="TRUE">
-			<h3>{data.subheader}</h3>
-		</v:case>
-		<v:case case="3" break="TRUE">
-			<h4>{data.subheader}</h4>
-		</v:case>
-		<v:case case="4" break="TRUE">
-			<h5>{data.subheader}</h5>
-		</v:case>
-		<v:case case="5" break="TRUE">
-			<h6>{data.subheader}</h6>
-		</v:case>
-		<v:case case="default">
-			<h2>{data.subheader}</h2>
-		</v:case>
+		<v:case case="2" break="TRUE"><h3>{data.subheader}</h3></v:case>
+		<v:case case="3" break="TRUE"><h4>{data.subheader}</h4></v:case>
+		<v:case case="4" break="TRUE"><h5>{data.subheader}</h5></v:case>
+		<v:case case="5" break="TRUE"><h6>{data.subheader}</h6></v:case>
+        <v:case case="1" />
+		<v:case case="default"><h2>{data.subheader}</h2></v:case>
 	</v:switch>
 </f:section>
 

@@ -11,8 +11,18 @@
 <v:iterator.explode content="{data.bodytext}" glue="{flexform.tableparsing_delimiter}" as="NULL">
 
 </v:iterator.explode>
+    <f:if condition="{settings.table.defaultClass}">
+        <v:variable.set name="tableClass" value="{settings.table.defaultClass}" />
+    </f:if>
 
-	<v:var.set name="tableClass" value="width-100{f:if(condition:'{flexform.acctables_tableclass}', then: ' {flexform.acctables_tableclass -> f:format.raw()}')}" />
+    <f:if condition="{v:variable.get(name: 'settings.table.layoutClass.{data.layout}', useRawKeys:1)}">
+        <v:variable.set name="tableClass" value="{tableClass} {v:variable.get(name: 'settings.table.layoutClass.{data.layout}', useRawKeys:1)}" />
+    </f:if>
+    <f:if condition="{flexform.acctables_tableclass}">
+        <v:variable.set name="tableClass" value="{tableClass} {flexform.acctables_tableclass}" />
+    </f:if>
+
+
 	<table
 	{f:if(condition:'{flexform.acctables_nostyles}!=1',	then:' class="{tableClass}"')}
 	{f:if(condition:'{data.table_border}!=0',			then:' border="{data.table_border}"')}

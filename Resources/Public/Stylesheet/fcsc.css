@@ -1,3 +1,4 @@
+.media:after,
 .imageContainer:after {
 	content: ".";
 	clear: both;
@@ -19,6 +20,17 @@
 
 
 
+.imageOrient-0 .imageContainerWrap,
+.imageOrient-8 .imageContainerWrap { right:50%; position: relative; float:right; }
+.imageOrient-0 .imageContainer,
+.imageOrient-8 .imageContainer{ right:-50%; position: relative; }
+
+.imageOrient-1 .imageContainer,
+.imageOrient-9 .imageContainer{ float:right; }
+
+.imageOrient-0 .content,
+.imageOrient-1 .content,
+.imageOrient-2 .content{ clear: both;}
 
 
 .imageContainer figure { float: left; }

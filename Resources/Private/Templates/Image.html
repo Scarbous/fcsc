@@ -1,10 +1,23 @@
-{namespace m=MachenDe\infoTemplate\ViewHelpers}
+{namespace v=Tx_Vhs_ViewHelpers} {namespace fcsc=Scarbous\fcsc\ViewHelpers}
 
 <f:layout name="Default" />
 <f:section name="Main">
-    <m:fal data="{data}" as="images">
-    	<f:if condition="{images}">
-    		<f:render partial="Images" arguments="{_all}"/>
-    	</f:if>
-    </m:fal>
+
+    <v:switch value="{data.imageorient}">
+        <v:case case="0" break="1">
+            <div class="media imageOrient-{data.imageorient}">
+                <div class="imageContainerWrap">
+                    <div class="imageContainer imageCols-{data.imagecols}"><f:render partial="Images" arguments="{_all}"/></div>
+                </div>
+            </div>
+        </v:case>
+        <v:case case="1" />
+        <v:case case="2" break="1">
+            <div class="media imageOrient-{data.imageorient}">
+                <div class="imageContainer imageCols-{data.imagecols}"><f:render partial="Images" arguments="{_all}"/></div>
+            </div>
+        </v:case>
+
+    </v:switch>
+
 </f:section>
