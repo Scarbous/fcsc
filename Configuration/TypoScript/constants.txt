@@ -1,0 +1,14 @@
+plugin.tx_fcsc {
+	filepaths {
+		StyleSheet = EXT:fcsc/Resources/Public/Stylesheet/
+		templateRootPath = EXT:fcsc/Resources/Private/Templates/
+		partialRootPath = EXT:fcsc/Resources/Private/Partials/
+		layoutRootPath = EXT:fcsc/Resources/Private/Layouts/
+	}
+	settings {
+		images {
+			contentWidth = 1000
+			padding = 20
+		}
+	}
+}

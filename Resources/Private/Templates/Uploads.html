@@ -1,0 +1,23 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+{namespace m=MachenDe\lauer_template\ViewHelpers}
+
+<f:layout name="Default" />
+<f:section name="Main">
+
+	<m:fal data="{data}" field="media" as="files">
+		<f:if condition="{files}">
+			<ul class="FcscUploads">
+			<f:for each="{files}" as="file">	    	
+			<li><a href="{file.publicUrl}" target="blank" {f:if(condition:file.title, then:' title="{file.title}"')}{f:if(condition:file.description, then:' alt="{file.description}"')}{f:if(condition:data.target, then:' target="{data.target}"')}>
+				<f:if condition="{data.layout}==1">
+					<span class="fileIcon">{file.mimeTypeExtension}</span>
+				</f:if>
+				<span class="fileName">{f:if(condition:file.title, then:'{file.title}', else:'{file.name}')}</span>
+				<f:if condition="{data.filelink_size}"><span class="fileSize">{file.size -> m:format.bytes()}</span></f:if>
+				</a></li>
+			</f:for>
+			</ul>
+		</f:if>
+	</m:fal>
+
+</f:section>

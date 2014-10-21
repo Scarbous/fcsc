@@ -1,0 +1,15 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+
+<f:layout name="Default" />
+<f:section name="Main">
+   
+    <v:iterator.explode content="{data.bodytext}" glue="
+" as="items">
+        <{f:if(then: 'ol', else: 'ul', condition: '{data.layout} == 2')} class="list">
+            <f:for each="{items}" as="item">
+            <li><span>{item}</span></li>
+            </f:for>
+        </{f:if(then: 'ol', else: 'ul', condition: '{data.layout} == 2')}>
+	</v:iterator.explode>
+    
+</f:section>

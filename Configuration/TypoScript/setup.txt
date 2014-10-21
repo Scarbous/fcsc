@@ -1,0 +1,103 @@
+page.includeCSS.fcsc = {$plugin.tx_fcsc.filepaths.StyleSheet}fcsc.css
+
+temp.fcsc.tt_content = FLUIDTEMPLATE
+temp.fcsc.tt_content {
+	partialRootPath = {$plugin.tx_fcsc.filepaths.partialRootPath}
+	layoutRootPath = {$plugin.tx_fcsc.filepaths.layoutRootPath}
+	settings {
+		images {
+			contentWidth = {$plugin.tx_fcsc.settings.images.contentWidth}
+			padding = {$plugin.tx_fcsc.settings.images.padding}
+		}
+	}
+}
+
+
+plugin.tx_fcsc._CSS_DEFAULT_STYLE (
+.imageOrient-17 .imageContainer,
+.imageOrient-25 .imageContainer,
+.imageOrient-18 .imageContainer,
+.imageOrient-26 .imageContainer { max-width:50%; }
+
+
+.imageContainer { margin:-{$plugin.tx_fcsc.settings.images.padding}px; }
+
+.imageContainer figure { padding:{$plugin.tx_fcsc.settings.images.padding}px; margin:0; }
+
+.imageOrient-17 .imageContainer figure,
+.imageOrient-25 .imageContainer figure { margin:0; padding:0 0 {$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px; }
+
+
+.imageOrient-18 .imageContainer figure,
+.imageOrient-26 .imageContainer figure { margin:0; padding:0 {$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px 0; }
+)
+
+
+
+temp.lib.stdheader < lib.stdheader
+lib.stdheader >
+lib.stdheader < temp.fcsc.tt_content
+lib.stdheader.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Header.html
+
+
+tt_content >
+tt_content = CASE
+tt_content {
+	key.field = CType
+
+	header.20 < lib.stdheader
+
+	text = COA
+	text {
+		10 < lib.stdheader
+		20 < temp.fcsc.tt_content
+		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Text.html
+	}
+
+	textpic = COA
+	textpic {
+		10 < lib.stdheader
+		20 < temp.fcsc.tt_content
+		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Textpic.html
+	}
+
+	image = COA
+	image {
+		10 < lib.stdheader
+#		20 < temp.fcsc.tt_content
+#		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Image.html
+	}
+
+	bullets = COA
+	bullets {
+		10 < lib.stdheader
+		20 < temp.fcsc.tt_content
+		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Bullets.html
+	}
+
+
+	table = COA
+	table {
+		10 < lib.stdheader
+		20 < temp.fcsc.tt_content
+		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Table.html
+	}
+
+	uploads = COA
+	uploads {
+		10 < lib.stdheader
+		20 < temp.fcsc.tt_content
+		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Uploads.html
+	}
+
+	div  < temp.fcsc.tt_content
+	div.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Div.html
+
+	html < temp.fcsc.tt_content
+	html.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Html.html
+}
+#tt_content.menu.20.10 < lib.stdheader
+#tt_content.menu.20 >
+#tt_content.menu.20 < temp.fcsc.tt_content
+#tt_content.menu.20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Menu.html
+

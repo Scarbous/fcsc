@@ -1,0 +1,10 @@
+{namespace m=MachenDe\infoTemplate\ViewHelpers}
+
+<f:layout name="Default" />
+<f:section name="Main">
+    <m:fal data="{data}" as="images">
+    	<f:if condition="{images}">
+    		<f:render partial="Images" arguments="{_all}"/>
+    	</f:if>
+    </m:fal>
+</f:section>

@@ -1,0 +1,48 @@
+.imageContainer:after {
+	content: ".";
+	clear: both;
+	display: block;
+	visibility: hidden;
+	height: 0px;
+}
+
+.imageContainer a { display:block; }
+
+.imageOrient-25 .content,
+.imageOrient-26 .content { overflow: hidden; }
+
+.imageOrient-17 .imageContainer,
+.imageOrient-25 .imageContainer { float:right; }
+
+.imageOrient-18 .imageContainer,
+.imageOrient-26 .imageContainer { float:left; }
+
+
+
+
+
+.imageContainer figure { float: left; }
+
+.imageContainer figure.rowCount-0 { clear:both;}
+
+.imagecols-2 figure {
+	max-width: 50%;
+}
+.imagecols-3 figure {
+	max-width: 33.333333333%;
+}
+.imagecols-4 figure {
+	max-width: 25%;
+}
+.imagecols-5 figure {
+	max-width: 20%;
+}
+.imagecols-6 figure {
+	max-width: 16.666666666%;
+}
+.imagecols-7 figure {
+	max-width: 14, 285714286%;
+}
+.imagecols-8 figure {
+	max-width: 12, 5%;
+}

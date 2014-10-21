@@ -1,0 +1,129 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+
+<f:section name="HeaderContent">
+	<f:if condition="{data.header_link}">
+		<f:then>
+			<f:link.page pageUid="{data.header_link}">
+				{data.header}
+			</f:link.page>
+		</f:then>
+		<f:else>
+			{data.header}
+		</f:else>
+	</f:if>
+</f:section>
+<f:section name="headerClass">
+	<f:if condition="{data.header_position}">
+		<f:then>
+			class="pattern
+			<v:switch value="{data.header_position}">
+				<v:case case="left" break="TRUE"> text-left </v:case>
+				<v:case case="center" break="TRUE"> text-center </v:case>
+				<v:case case="right" break="TRUE"> text-right </v:case>
+			</v:switch>
+			"
+		</f:then>
+		<f:else>
+			class="pattern"
+		</f:else>
+	</f:if>
+</f:section>
+
+<f:section name="HeaderWrap">
+	<v:switch value="{data.colPos}">
+		<v:case case="2"/>
+		<v:case case="11"/>
+		<v:case case="21"/>
+		<v:case case="22"/>
+		<v:case case="23" break="TRUE">
+			<div class="title">
+				<f:render section="HeaderContent" arguments="{_all}" />
+			</div>
+		</v:case>
+		<v:case case="default" break="true">
+			<v:switch value="{data.header_layout}">
+				<v:case case="1" break="TRUE">
+					<h1{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h1>
+				</v:case>
+				<v:case case="2" break="TRUE">
+					<h2{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h2>
+				</v:case>
+				<v:case case="3" break="TRUE">
+					<h3{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h3>
+				</v:case>
+				<v:case case="4" break="TRUE">
+					<h4{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h4>
+				</v:case>
+				<v:case case="5" break="TRUE">
+					<h5{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h5>
+				</v:case>
+				<v:case case="6" break="TRUE">
+					<h6{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h6>
+				</v:case>
+				<v:case case="default">
+					<h1{f:render(section:'headerClass' arguments:'{_all}')}>
+						<span class="title">
+							<f:render section="HeaderContent" arguments="{_all}" />
+						</span></h1>
+				</v:case>
+			</v:switch>
+		</v:case>
+	</v:switch>
+</f:section>
+
+<f:section name="SubHeaderWrap">
+	<v:switch value="{data.header_layout}">
+		<v:case case="1" break="TRUE">
+			<h2>{data.subheader}</h2>
+		</v:case>
+		<v:case case="2" break="TRUE">
+			<h3>{data.subheader}</h3>
+		</v:case>
+		<v:case case="3" break="TRUE">
+			<h4>{data.subheader}</h4>
+		</v:case>
+		<v:case case="4" break="TRUE">
+			<h5>{data.subheader}</h5>
+		</v:case>
+		<v:case case="5" break="TRUE">
+			<h6>{data.subheader}</h6>
+		</v:case>
+		<v:case case="default">
+			<h2>{data.subheader}</h2>
+		</v:case>
+	</v:switch>
+</f:section>
+
+<f:if condition="{data.header}">
+	<f:if condition="{data.header_layout}!=100">
+		<f:if condition="{data.subheader}">
+			<f:then>
+				<hgroup>
+					<f:render section="HeaderWrap" arguments="{_all}" />
+					<f:render section="SubHeaderWrap" arguments="{_all}" />
+				</hgroup>
+			</f:then>
+			<f:else>
+				<f:render section="HeaderWrap" arguments="{_all}" />
+			</f:else>
+		</f:if>
+	</f:if>
+</f:if>
