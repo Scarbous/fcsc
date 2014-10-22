@@ -15,7 +15,7 @@
 <f:section name="headerClass">
 	<f:if condition="{data.header_position}">
 		<f:then>
-			class="pattern
+			class="
 			<v:switch value="{data.header_position}">
 				<v:case case="left" break="TRUE"> text-left </v:case>
 				<v:case case="center" break="TRUE"> text-center </v:case>
@@ -23,9 +23,6 @@
 			</v:switch>
 			"
 		</f:then>
-		<f:else>
-			class="pattern"
-		</f:else>
 	</f:if>
 </f:section>
 
