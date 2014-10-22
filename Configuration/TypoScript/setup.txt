@@ -44,17 +44,6 @@ plugin.tx_fcsc._CSS_DEFAULT_STYLE (
 .imageContainer figure { padding:{$plugin.tx_fcsc.settings.images.padding}px; margin:0; }
 
 )
-/*
-
-.imageOrient-17 .imageContainer figure,
-.imageOrient-25 .imageContainer figure { margin:0; padding:{$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px; }
-
-
-.imageOrient-18 .imageContainer figure,
-.imageOrient-26 .imageContainer figure { margin:0; padding:0 {$plugin.tx_fcsc.settings.images.padding}px {$plugin.tx_fcsc.settings.images.padding}px 0; }
-
-*/
-
 
 temp.lib.stdheader < lib.stdheader
 lib.stdheader >
@@ -62,7 +51,8 @@ lib.stdheader < temp.fcsc.tt_content
 lib.stdheader.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Header.html
 
 
-tt_content >
+#tt_content >
+
 tt_content = CASE
 tt_content {
 	key.field = CType
@@ -123,4 +113,5 @@ tt_content {
 #tt_content.menu.20 >
 #tt_content.menu.20 < temp.fcsc.tt_content
 #tt_content.menu.20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Menu.html
+
 

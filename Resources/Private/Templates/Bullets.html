@@ -7,7 +7,7 @@
 " as="items">
         <{f:if(then: 'ol', else: 'ul', condition: '{data.layout} == 2')} class="list">
             <f:for each="{items}" as="item">
-            <li><span>{item}</span></li>
+            <li>{item}</li>
             </f:for>
         </{f:if(then: 'ol', else: 'ul', condition: '{data.layout} == 2')}>
 	</v:iterator.explode>
