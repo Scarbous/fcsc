@@ -111,3 +111,59 @@ lib.parseFunc_RTE {
 		htmlSpecialChars = 2
 	}
 }
+
+
+
+
+# ****************
+# CType: shortcut
+# ****************
+# Should be a complete copy from the old static template "content (default)"
+tt_content.shortcut = COA
+tt_content.shortcut {
+
+    20 = RECORDS
+    20 {
+        source.field = records
+        tables = {$content.shortcut.tables}
+    }
+
+    20.stdWrap {
+        editIcons = tt_content: records
+        editIcons.iconTitle.data = LLL:EXT:css_styled_content/pi1/locallang.xml:eIcon.recordList
+
+        prefixComment = 2 | Inclusion of other records (by reference):
+    }
+}
+
+# ****************
+# CType: list
+# ****************
+# Should be a complete copy from the old static template "content (default)" (except "lib.stdheader")
+
+tt_content.list = COA
+tt_content.list {
+    10 = < lib.stdheader
+
+    20 = CASE
+    20.key.field = list_type
+
+    20.stdWrap {
+        editIcons = tt_content: list_type, layout, select_key, pages [recursive]
+        editIcons.iconTitle.data = LLL:EXT:css_styled_content/pi1/locallang.xml:eIcon.plugin
+
+        prefixComment = 2 | Plugin inserted:
+    }
+}
+
+# ****************
+# Default error msg:
+# ****************
+
+tt_content.default = TEXT
+tt_content.default {
+    field = CType
+    wrap = <p style="background-color: yellow;"><b>ERROR:</b> Content Element type "|" has no rendering definition!</p>
+
+    prefixComment = 2 | Unknown element message:
+}
