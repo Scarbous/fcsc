@@ -2,6 +2,6 @@ TCEFORM.tt_content {
 	image_frames.disabled = 1
 
 	CType.removeItems = swfobject,qtobject,multimedia
-}
 
-TCEFORM.tt_content.imageorient.types.image.removeItems = 8,9,10,17,18,25,26
+	imageorient.types.image.removeItems = 8,9,10,17,18,25,26
+}

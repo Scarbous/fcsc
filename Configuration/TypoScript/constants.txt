@@ -1,24 +1,42 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:fcsc/Configuration/TypoScript/csc/constants.txt">
 
+## Define custom categories
+# customsubcategory=Settings=Settings
+# customsubcategory=Template=Template
+
+
 plugin.tx_fcsc {
 	filepaths {
 		StyleSheet = EXT:fcsc/Resources/Public/Stylesheet/
+        # cat=plugin.fcsc/Template/0001; type=small; label= Template Path
 		templateRootPath = EXT:fcsc/Resources/Private/Templates/
+        # cat=plugin.fcsc/Template/0002; type=small; label= Partial Path
 		partialRootPath = EXT:fcsc/Resources/Private/Partials/
+        # cat=plugin.fcsc/Template/0003; type=small; label= Layout Path
 		layoutRootPath = EXT:fcsc/Resources/Private/Layouts/
 	}
 	settings {
 		header {
+            # cat=plugin.fcsc/Settings/0101; type=small; label= No Header-Tag Cols
 		    noHeaderTagCols = 20, 21
+            # cat=plugin.fcsc/Settings/0102; type=small; label= Alternate Header-Tag Class <DIV>
 		    noHeaderTagClass = title
 		}
 		images {
+            # cat=plugin.fcsc/Settings/0201; type=small; label= Default content width (for image rendering)
 			contentWidth = 1000
+            # cat=plugin.fcsc/Settings/0202; type=small; label= Image padding
 			padding = 10
 		}
 		table {
+            # cat=plugin.fcsc/Settings/0301; type=small; label= Default table Class
 		    defaultClass = table
+            # cat=plugin.fcsc/Settings/0302; type=small; label= Layout1 table Class
 		    layoutClass.1 = Layout1
+            # cat=plugin.fcsc/Settings/0303; type=small; label= Layout2 table Class
+            layoutClass.2 = Layout2
+            # cat=plugin.fcsc/Settings/0304; type=small; label= Layout3 table Class
+            layoutClass.3 = Layout3
 		}
 	}
 }

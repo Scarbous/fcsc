@@ -1,27 +1,27 @@
-{namespace v=Tx_Vhs_ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 {namespace fcsc=Scarbous\fcsc\ViewHelpers}
 
 
 <v:content.resources.fal uid="{data.uid}" as="images">
     <f:if condition="{data.imagewidth}>0">
         <f:then>
-            <v:var.set name="ImageMaxWidth" value="{data.imagewidth}" />
+            <v:variable.set name="ImageMaxWidth" value="{data.imagewidth}" />
         </f:then>
         <f:else>
             <f:if condition="{images -> f:count()}>1">
                 <f:then>
                     <v:condition.iterator.contains needle="{data.imageorient}" haystack="{0:17,1:18,2:25,3:26}">
                         <f:then>
-                            <v:var.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth} / 2 - {data.imagecols} * {settings.images.padding} * 2 ) / {data.imagecols} ') -> v:math.floor()}" />
+                            <v:variable.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth} / 2 - {data.imagecols} * {settings.images.padding} * 2 ) / {data.imagecols} ') -> v:math.floor()}" />
                         </f:then>
                         <f:else>
-                            <v:var.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth} - ( {data.imagecols} - 1 ) * {settings.images.padding} * 2 ) / {data.imagecols} ') -> v:math.floor()}" />
+                            <v:variable.set name="ImageMaxWidth" value="{fcsc:math.problem(a:'({settings.images.contentWidth} - ( {data.imagecols} - 1 ) * {settings.images.padding} * 2 ) / {data.imagecols} ') -> v:math.floor()}" />
                         </f:else>
                     </v:condition.iterator.contains>
 
                 </f:then>
                 <f:else>
-                    <v:var.set name="ImageMaxWidth" value="{settings.Images.MaxWidth}" />
+                    <v:variable.set name="ImageMaxWidth" value="{settings.Images.MaxWidth}" />
                 </f:else>
             </f:if>
         </f:else>
@@ -31,7 +31,7 @@
             <f:render section="Images" arguments="{_all}"/>
         </f:then>
         <f:else>
-            <v:var.set name="image" value="{images.0}" />
+            <v:variable.set name="image" value="{images.0}" />
             <f:render section="getImage" arguments="{_all}"/>
         </f:else>
     </f:if>
