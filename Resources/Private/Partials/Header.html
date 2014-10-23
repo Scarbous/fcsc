@@ -1,4 +1,4 @@
-{namespace v=Tx_Vhs_ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 
 <f:section name="HeaderContent">
 	<f:if condition="{data.header_link}">
@@ -15,13 +15,11 @@
 <f:section name="headerClass">
 	<f:if condition="{data.header_position}">
 		<f:then>
-			class="
-			<v:switch value="{data.header_position}">
-				<v:case case="left" break="TRUE"> text-left </v:case>
-				<v:case case="center" break="TRUE"> text-center </v:case>
-				<v:case case="right" break="TRUE"> text-right </v:case>
-			</v:switch>
-			"
+			class="<v:switch value="{data.header_position}">
+				<v:case case="left" break="TRUE">text-left</v:case>
+				<v:case case="center" break="TRUE">text-center</v:case>
+				<v:case case="right" break="TRUE">text-right</v:case>
+			</v:switch>"
 		</f:then>
 	</f:if>
 </f:section>

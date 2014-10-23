@@ -102,16 +102,18 @@ tt_content {
 		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Uploads.html
 	}
 
+    menu = COA
+    menu {
+        10 < lib.stdheader
+        20 < temp.fcsc.tt_content
+        20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Menu.html
+    }
+
 	div  < temp.fcsc.tt_content
 	div.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Div.html
 
 	html < temp.fcsc.tt_content
 	html.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Html.html
 }
-
-#tt_content.menu.20.10 < lib.stdheader
-#tt_content.menu.20 >
-#tt_content.menu.20 < temp.fcsc.tt_content
-#tt_content.menu.20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Menu.html
 
 
