@@ -18,6 +18,8 @@ temp.fcsc.tt_content {
 		table {
             defaultClass = {$plugin.tx_fcsc.settings.table.defaultClass}
             layoutClass.1 =  {$plugin.tx_fcsc.settings.table.layoutClass.1}
+            layoutClass.2 =  {$plugin.tx_fcsc.settings.table.layoutClass.2}
+            layoutClass.3 =  {$plugin.tx_fcsc.settings.table.layoutClass.3}
         }
         uploads {
 
@@ -72,7 +74,7 @@ tt_content {
 		20 < temp.fcsc.tt_content
 		20.file = {$plugin.tx_fcsc.filepaths.templateRootPath}Textpic.html
 	}
-
+    
 	image = COA
 	image {
 		10 < lib.stdheader
