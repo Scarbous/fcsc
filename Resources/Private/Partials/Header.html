@@ -1,85 +1,63 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace fcsc=Scarbous\fcsc\ViewHelpers}
 
-<f:section name="HeaderContent">
-	<f:if condition="{data.header_link}">
-		<f:then>
-			<f:link.page pageUid="{data.header_link}">
-				{data.header}
-			</f:link.page>
-		</f:then>
-		<f:else>
-			{data.header}
-		</f:else>
-	</f:if>
-</f:section>
-<f:section name="headerClass">
-	<f:if condition="{data.header_position}">
-		<f:then>
-			class="<v:switch value="{data.header_position}">
-				<v:case case="left" break="TRUE">text-left</v:case>
-				<v:case case="center" break="TRUE">text-center</v:case>
-				<v:case case="right" break="TRUE">text-right</v:case>
-			</v:switch>"
-		</f:then>
-	</f:if>
-</f:section>
-
-<f:section name="HeaderWrap">
-
+<f:section name="Header">
     <v:condition.iterator.contains needle="{data.colPos}" haystack="{settings.header.noHeaderTagCols -> v:iterator.explode()}">
         <f:then>
             <div class="{settings.header.noHeaderTagClass}"><f:render section="HeaderContent" arguments="{_all}" /></div>
         </f:then>
         <f:else>
-
-			<v:switch value="{data.header_layout}">
-				<v:case case="2" break="TRUE">
-					<h2{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h2>
-				</v:case>
-				<v:case case="3" break="TRUE">
-					<h3{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h3>
-				</v:case>
-				<v:case case="4" break="TRUE">
-					<h4{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h4>
-				</v:case>
-				<v:case case="5" break="TRUE">
-					<h5{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h5>
-				</v:case>
-				<v:case case="6" break="TRUE">
-					<h6{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h6>
-				</v:case>
-                <v:case case="1" />
-                <v:case case="default" break="TRUE">
-					<h1{f:render(section:'headerClass' arguments:'{_all}')}><f:render section="HeaderContent" arguments="{_all}" /></h1>
-				</v:case>
-			</v:switch>
+            <v:tag name="h{HeaderLayout}" class="headerClass"><f:render section="HeaderContent" arguments="{_all}" /></v:tag>
         </f:else>
     </v:condition.iterator.contains>
 </f:section>
 
-<f:section name="SubHeaderWrap">
-	<v:switch value="{data.header_layout}">
-		<v:case case="2" break="TRUE"><h3>{data.subheader}</h3></v:case>
-		<v:case case="3" break="TRUE"><h4>{data.subheader}</h4></v:case>
-		<v:case case="4" break="TRUE"><h5>{data.subheader}</h5></v:case>
-		<v:case case="5" break="TRUE"><h6>{data.subheader}</h6></v:case>
-        <v:case case="1" />
-		<v:case case="default"><h2>{data.subheader}</h2></v:case>
-	</v:switch>
-</f:section>
+<f:section name="HeaderContent"><v:format.trim>
+    <f:if condition="{data.header_link}">
+        <f:then>
+            <v:link.typolink configuration="{parameter:data.header_link}">{data.header}</v:link.typolink>
+        </f:then>
+        <f:else>{data.header}</f:else>
+    </f:if>
+</v:format.trim></f:section>
 
 <f:if condition="{data.header}">
 	<f:if condition="{data.header_layout}!=100">
+
+        <v:switch value="{data.header_layout}">
+            <v:case case="2"/>
+            <v:case case="3"/>
+            <v:case case="4"/>
+            <v:case case="5"/>
+            <v:case case="6">
+                <v:variable.set name="HeaderLayout" value="{data.header_layout}"/>
+            </v:case>
+            <v:case case="1" />
+            <v:case case="default" break="TRUE">
+                <v:variable.set name="HeaderLayout" value="1"/>
+            </v:case>
+        </v:switch>
+
+        <v:switch value="{data.header_position}" as="headerClass">
+            <v:case case="left" break="TRUE">text-left</v:case>
+            <v:case case="center" break="TRUE">text-center</v:case>
+            <v:case case="right" break="TRUE">text-right</v:case>
+        </v:switch>
+
 		<f:if condition="{data.subheader}">
 			<f:then>
+                <f:if condition="{HeaderLayout}<6">
+                    <v:variable.set name="SubHeaderLayout" value="{fcsc:math.problem(a:'{HeaderLayout}+1')}"/>
+                </f:if>
 				<hgroup>
-					<f:render section="HeaderWrap" arguments="{_all}" />
-					<f:render section="SubHeaderWrap" arguments="{_all}" />
+					<f:render section="Header" arguments="{_all}" />
+                    <v:tag name="h{SubHeaderLayout}" >{data.subheader}</v:tag>
 				</hgroup>
 			</f:then>
 			<f:else>
-				<f:render section="HeaderWrap" arguments="{_all}" />
+				<f:render section="Header" arguments="{_all}" />
 			</f:else>
 		</f:if>
+
 	</f:if>
 </f:if>

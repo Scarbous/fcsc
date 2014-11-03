@@ -5,54 +5,43 @@
 
 <f:layout name="Default" />
 <f:section name="Main">
+
 <flux:form.data table="tt_content" field="pi_flexform" record="{data}" as="flexform">
+    <fcsc:Getcsv csv="{data.bodytext}" delimiter="{flexform.tableparsing_delimiter}" quotedInput="{flexform.tableparsing_quote}" as="csvData">
+        <v:tag name="table" class="{f:if(condition:'{flexform.acctables_nostyles}!=1',	then:'
+        {settings.table.defaultClass}
+        {v:variable.get(name: \'settings.table.layoutClass.{data.layout}\', useRawKeys:1)}
+        {flexform.acctables_tableclass}
+        ')}"
+            additionalAttributes="{
+                border:'{data.table_border}',
+                cellspacing:'{data.table_cellspacing}',
+                cellpadding:'{data.table_cellpadding}',
+                summary:'{flexform.acctables_summary -> f:format.raw()}'
+            }"
+        >
+            <v:tag name="caption" hideIfEmpty="{flexform.acctables_caption}">{flexform.acctables_caption}</v:tag>
+            <f:for each="{csvData}" as="row" iteration="rowIteration">
 
-
-<v:iterator.explode content="{data.bodytext}" glue="{flexform.tableparsing_delimiter}" as="NULL">
-
-</v:iterator.explode>
-    <f:if condition="{settings.table.defaultClass}">
-        <v:variable.set name="tableClass" value="{settings.table.defaultClass}" />
-    </f:if>
-
-    <f:if condition="{v:variable.get(name: 'settings.table.layoutClass.{data.layout}', useRawKeys:1)}">
-        <v:variable.set name="tableClass" value="{tableClass} {v:variable.get(name: 'settings.table.layoutClass.{data.layout}', useRawKeys:1)}" />
-    </f:if>
-    <f:if condition="{flexform.acctables_tableclass}">
-        <v:variable.set name="tableClass" value="{tableClass} {flexform.acctables_tableclass}" />
-    </f:if>
-
-
-	<table
-	{f:if(condition:'{flexform.acctables_nostyles}!=1',	then:' class="{tableClass}"')}
-	{f:if(condition:'{data.table_border}!=0',			then:' border="{data.table_border}"')}
-	{f:if(condition:'{data.table_cellspacing}!=0',		then:' cellspacing="{data.table_cellspacing}"')}
-	{f:if(condition:'{data.table_cellpadding}!=0',		then:' cellpadding="{data.table_cellpadding}"')}
-	{f:if(condition:'{flexform.acctables_summary}',		then:' summary="{flexform.acctables_summary -> f:format.raw()}"')}
-	>
-
-	<f:if condition="{flexform.acctables_caption}"><caption>{flexform.acctables_caption}</caption></f:if>
-	<f:for each="{fcsc:Getcsv(csv:data.bodytext, delimiter:flexform.tableparsing_delimiter,quotedInput:flexform.tableparsing_quote)}" as="row" iteration="rowIteration">
-
-		<f:if condition="{rowIteration.isFirst}">
-			<f:if condition="{flexform.acctables_headerpos}=='top'">
-				<f:then><thead><f:for each="{row}" as="cell"><th>{cell -> f:format.raw()}</th></f:for></thead></f:then>
-				<f:else><f:render section="tableRow" arguments="{_all}"/></f:else>
-			</f:if>
-		</f:if>
-		<f:if condition="{rowIteration.isFirst}!=1"><f:if condition="{rowIteration.isLast}!=1">
-			<f:render section="tableRow" arguments="{_all}"/>
-		</f:if></f:if>
-		<f:if condition="{rowIteration.isLast}">
-			<f:if condition="{flexform.acctables_tfoot }">
-				<f:then><tfoot><f:for each="{row}" as="cell"><td>{cell -> f:format.raw()}</td></f:for></tfoot></f:then>
-				<f:else><f:render section="tableRow" arguments="{_all}"/></f:else>
-			</f:if>
-		</f:if>
-	</f:for>
-	</table>
-
-	</flux:form.data>
+                <f:if condition="{rowIteration.isFirst}">
+                    <f:if condition="{flexform.acctables_headerpos}=='top'">
+                        <f:then><thead><f:for each="{row}" as="cell"><th>{cell -> f:format.raw()}</th></f:for></thead></f:then>
+                        <f:else><f:render section="tableRow" arguments="{_all}"/></f:else>
+                    </f:if>
+                </f:if>
+                <f:if condition="{rowIteration.isFirst}!=1"><f:if condition="{rowIteration.isLast}!=1">
+                    <f:render section="tableRow" arguments="{_all}"/>
+                </f:if></f:if>
+                <f:if condition="{rowIteration.isLast}">
+                    <f:if condition="{flexform.acctables_tfoot }">
+                        <f:then><tfoot><f:for each="{row}" as="cell"><td>{cell -> f:format.raw()}</td></f:for></tfoot></f:then>
+                        <f:else><f:render section="tableRow" arguments="{_all}"/></f:else>
+                    </f:if>
+                </f:if>
+            </f:for>
+        </v:tag>
+    </fcsc:Getcsv>
+</flux:form.data>
 
 </f:section>
 
