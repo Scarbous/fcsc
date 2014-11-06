@@ -7,7 +7,7 @@
 		<f:if condition="{files}">
 			<ul class="FcscUploads">
 			<f:for each="{files}" as="file">
-			<li><a href="{file.publicUrl}" target="blank"
+			<li><a href="{file.url}" target="blank"
                     {f:if(condition:file.title, then:' title="{file.title}"')}
                     {f:if(condition:file.description, then:' alt="{file.description}"')}
                     {f:if(condition:data.target, then:' target="{data.target}"')}
@@ -15,7 +15,9 @@
                     <f:if condition="{data.layout}==1">
 
                         <span class="fileIcon">
-                            <fcsc:format.getShortMimeType mimetype="{file.mimetype}" />
+                            <object type="image/svg+xml" data="typo3conf/ext/fcsc/Resources/Public/icon.svg">
+                                <param name="fileType" value="{fcsc:format.getShortMimeType(mimetype:"{file.mimetype}")}" />
+                            </object>
                         </span>
                     </f:if>
                     <span class="fileName">{f:if(condition:file.title, then:'{file.title}', else:'{file.name}')}</span>

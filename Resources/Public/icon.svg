@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="32" height="32"
+     onload="SetParams()">
+ <title>File-Icon</title>
+ <desc/>
+   <script><![CDATA[
+      function SetParams()
+      {
+        var paramArray = [];
+        if ( document.defaultView.frameElement ) {
+           var params = document.defaultView.frameElement.getElementsByTagName("param");
+
+           for ( var i = 0, iLen = params.length; iLen > i; i++ ) {
+              var eachParam = params[ i ];
+              var name = eachParam.getAttribute( "name" );
+              var value = eachParam.getAttribute( "value" );
+              paramArray[ name ] = value;
+           }
+        }
+        var fileType = document.getElementById("fileType");
+        fileType.appendChild( document.createTextNode( paramArray[ "fileType" ] ) );
+      };
+   ]]></script>
+ <g>
+  <title>Layer 1</title>
+  <g id="Page-1" fill-rule="evenodd" fill="none">
+   <g id="icon-94-document-file-doc" fill="#929292">
+    <path fill="#666666" id="document-file-doc" d="m21,13l0,-3l0,0l-6,-7l-10.99724,0c-1.10609,0 -2.00276,0.89834 -2.00276,2.00733l0,22.98534c0,1.10862 0.89093,2.00733 1.99742,2.00733l15.005161,0c1.10314,0 1.997419,-0.898211 1.997419,-1.990801l0,-2.009199l7.993151,0c1.660639,0 3.006849,-1.34226 3.006849,-2.998791l0,-7.002419c0,-1.65619 -1.335991,-2.99879 -3.006849,-2.99879l-7.993151,0l0,0l0,0zm-1,13l0,2.006599c0,0.54845 -0.447701,0.993401 -0.99996,0.993401l-15.00008,0c-0.54525,0 -0.99996,-0.445681 -0.99996,-0.995461l0,-23.009079c0,-0.5402 0.44574,-0.99546 0.99558,-0.99546l10.00442,0l0,4.99408c0,1.11937 0.8945,2.00592 1.99791,2.00592l4.00209,0l0,2l-7.99315,0c-1.66064,0 -3.00685,1.34226 -3.00685,2.99879l0,7.002419c0,1.656191 1.33599,2.998791 3.00685,2.998791l7.99315,0l0,0l0,0zm-5,-21.5l0,4.49121c0,0.55714 0.45065,1.00879 0.99674,1.00879l3.703209,0l-4.699949,-5.5l0,0zm-3.00544,9.5c-1.101561,0 -1.99456,0.90018 -1.99456,1.99202l0,7.015961c0,1.100161 0.90234,1.99202 1.99456,1.99202l17.01088,0c1.101561,0 1.99456,-0.900181 1.99456,-1.99202l0,-7.015961c0,-1.10016 -0.90234,-1.99202 -1.99456,-1.99202l-17.01088,0l0,0z"/>
+    <text font-weight="bold" xml:space="preserve" text-anchor="Middle" font-family="'Courier New', Courier, monospace" font-size="10" y="22.35" x="20.5" stroke="null" fill="#666666" id="fileType"></text>
+   </g>
+  </g>
+ </g>
+</svg>
