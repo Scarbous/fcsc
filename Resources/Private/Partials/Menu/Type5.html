@@ -1,0 +1,11 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<v:page.menu.directory pages="{data.pages}" as="pages">
+    <ul>
+        <f:for each="{pages -> v:iterator.sort(sortBy: 'tstamp', order: 'DESC')}" as="page">
+            <li>
+                <f:link.page pageUid="{page.uid}">{page.linktext}</f:link.page>
+            </li>
+        </f:for>
+    </ul>
+</v:page.menu.directory>

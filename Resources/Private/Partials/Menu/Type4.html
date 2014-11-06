@@ -1,0 +1,10 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<v:page.menu.directory pages="{data.pages}" as="pages">
+    <dl>
+        <f:for each="{pages}" as="page">
+            <dt><f:link.page pageUid="{page.uid}" title="{page.title}">{page.linktext}</f:link.page></dt>
+            <dd>{page.abstract -> f:format.nl2br()}</dd>
+        </f:for>
+    </dl>
+</v:page.menu.directory>

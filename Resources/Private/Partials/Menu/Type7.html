@@ -1,0 +1,20 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<v:page.menu.directory pages="{data.pages}" as="pages">
+    <ul>
+        <f:for each="{pages}" as="page">
+            <li>
+                <f:link.page pageUid="{page.uid}" title="{page.title}">{page.linktext}</f:link.page>
+                <v:content.render pageUid="{page.uid}" as="content" render="0">
+                    <ul>
+                        <f:for each="{content}" as="c">
+                            <li>
+                                <f:link.page pageUid="{page.uid}" section="c{c.uid}" title="{page.title}">{c.header}</f:link.page>
+                            </li>
+                        </f:for>
+                    </ul>
+                </v:content.render>
+            </li>
+        </f:for>
+    </ul>
+</v:page.menu.directory>

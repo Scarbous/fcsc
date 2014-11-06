@@ -2,6 +2,15 @@
 
 <f:layout name="Default" />
 <f:section name="Main">
-    {data.menu_type}:
-    {data.pages}
+    <f:switch expression="{data.menu_type}">
+        <f:case value="0"><v:page.menu.list pages="{data.pages}" /></f:case>
+        <f:case value="1"><v:page.menu.directory pages="{data.pages}" /></f:case>
+        <f:case value="4"><f:render partial="Menu/Type4" arguments="{all}"/></f:case>
+        <f:case value="7"><f:render partial="Menu/Type7" arguments="{all}"/></f:case>
+        <f:case value="2"><f:render partial="Menu/Type2" arguments="{all}"/></f:case>
+        <f:case value="8"><f:render partial="Menu/Type8" arguments="{all}"/></f:case>
+        <f:case value="3"><f:render partial="Menu/Type3" arguments="{all}"/></f:case>
+        <f:case value="5"><f:render partial="Menu/Type5" arguments="{all}"/></f:case>
+        <f:case default="1"><b>{data.menu_type}:</b> {data.pages}</f:case>
+    </f:switch>
 </f:section>
